@@ -2,23 +2,21 @@
 
 %{
 	#include<stdio.h>
-	int Vow=0,Cons=0;
+	int Vow=0, Cons=0;
 %}
 
 %%
-[\t\n]
-[aeiouAEIOU] {printf(" is Vowel \n"); Vow++;}
-[^aeiouAEIOU] {printf("This is Consonent \n"); Cons++;}
-
+[ \t\n]+ ;
+[aeiouAEIOU] {printf("%s is a vowel\n",yytext);Vow++;}
+[^aeiouAEIOU] {printf("%s is a consonant\n",yytext);Cons++;}
 %%
+
 int main()
 {
-	printf("Enter the String : \n");
+	printf("Enter a string:\n");
 	yylex();
-	printf("Number of Vowel = %d and Number of Consonent = %d\n\n",Vow,Cons);
-
+	printf("Number of Vowel=%d and Number of Consonant=%d\n\n",Vow, Cons);
 }
-
 int yywrap()
 {
 	return 1;
